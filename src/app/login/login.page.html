@@ -1,0 +1,20 @@
+<ion-content>
+  <div class="logo">
+    <img src="https://serving.photos.photobox.com/4047499725b7ba63bf4513c68878e27de8c5885b45000a668e57e5fb5ea6c92380429a72.jpg">
+  </div >
+  <div>
+    <h2 class="ion-text-center">Ingrese sus credenciales</h2>
+  </div>
+  <mat-form-field appearance="outline" class="espacio">
+    <mat-label>Usuario</mat-label>
+    <input matInput [(ngModel)]="user.nombre">
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="espacio">
+    <mat-label>Contraseña</mat-label>
+    <input matInput [type]="hide ? 'text' : 'password'" [(ngModel)]="user.pass">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+    </button>
+  </mat-form-field>
+  <ion-button color="primary" class="espacio ion-text-center" (click)="login()">OK</ion-button>
+</ion-content>

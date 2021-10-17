@@ -1,0 +1,61 @@
+<ion-header [translucent]="true" class='ion-text-center'>
+  <ion-toolbar>
+    <ion-title id="titulo"> Reserva </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-toolbar>
+    <ion-title id="titulo" class="ion-text-center">Ingresar datos </ion-title>
+  </ion-toolbar>
+  <!-- Inicio campos del formulario -->
+
+  <!-- Campo Dueño -->
+  <mat-form-field appearance="outline" id="dueno" class="example-full-width"  >
+    <mat-label>Nombre del Dueño</mat-label>
+    <input matInput [(ngModel)]="mascota.duenio">
+  </mat-form-field>
+
+  <!-- Campo Mascota -->
+  <mat-form-field appearance="outline" id="mascota" class="example-full-width">
+    <mat-label>Nombre de la Mascota</mat-label>
+    <input matInput [(ngModel)]="mascota.nombre">
+  </mat-form-field>
+
+  <!-- Campo Categoria (Selects of home.page.ts) -->
+  <mat-form-field appearance="outline">
+    <mat-label>Categoria</mat-label>
+    <mat-select [(ngModel)]="mascota.categoria">
+      <mat-option *ngFor="let animales of categoria" [value]="animales">
+        {{animales}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Calendario -->
+  <mat-form-field appearance="outline" class="date">
+    <mat-label>Fecha de Reserva</mat-label>
+    <input matInput [min]="minDate" [max]="maxDate" [(ngModel)]="fecha" [matDatepicker]="picker"/>
+    <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker touchUi #picker></mat-datepicker>
+  </mat-form-field>
+
+  <!-- Campo hora de reserva (Selects of home.page.ts) -->
+  <mat-form-field appearance="outline">
+    <mat-label>Hora de reserva</mat-label>
+    <mat-select [(ngModel)]="mascota.hora">
+      <mat-option *ngFor="let hora of horas" [value]="hora">
+        {{hora}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>  
+  <!-- Fin campos del formulario -->
+
+  <!-- Botones -->
+  <ion-row>
+    <ion-button (click)="reservar()">Reservar</ion-button>
+    <ion-button id="limpiar" (click)="limpiar()">Limpiar</ion-button>
+  </ion-row>
+    
+  
+</ion-content>
