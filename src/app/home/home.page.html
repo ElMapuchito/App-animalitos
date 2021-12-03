@@ -2,6 +2,13 @@
   <ion-toolbar>
     <ion-title id="titulo"> Reserva </ion-title>
   </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment value='datos_personales' (ionChange)='segmentChanged($event)'>
+      <ion-segment-button value='datos_personales'>
+        <ion-icon name="book-outline"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -56,6 +63,10 @@
     <ion-button (click)="reservar()">Reservar</ion-button>
     <ion-button id="limpiar" (click)="limpiar()">Limpiar</ion-button>
   </ion-row>
-    
-  
 </ion-content>
+
+<ion-footer class="ion-no-border"> 
+  <ion-toolbar>
+    <ion-button class="sesion" color="danger" slot="end" (click)='cerrarSesion()'>Cerrar Sesion</ion-button>
+  </ion-toolbar>
+</ion-footer>

@@ -6,10 +6,12 @@
     <h2 class="ion-text-center">Ingrese sus credenciales</h2>
   </div>
   <form [formGroup]='loginFormulario'>
+    <!-- Usuario -->
     <mat-form-field appearance="outline">
       <mat-label>Usuario</mat-label>
       <input matInput formControlName='nombre'>
     </mat-form-field>
+    <!-- Contraseña -->
     <mat-form-field appearance="outline">
       <mat-label>Contraseña</mat-label>
       <input matInput [type]="hide ? 'text' : 'password'" formControlName='password'>
@@ -18,13 +20,14 @@
       </button>
     </mat-form-field>
   </form>
-  
+  <!-- Boton Ingresar -->
   <ion-button color="primary" class="espacio ion-text-center" (click)="ingresar()">Ingresar</ion-button>
 </ion-content>
+
 <ion-footer class="ion-no-border"> 
   <ion-toolbar>
     <div class="final">
-      <p class="salto">¿No tienes cuenta? 
+      <p>¿No tienes cuenta? 
         <button class="boEnlace" [routerLink]="['/registro']">Registrate</button>
       </p>
     </div>

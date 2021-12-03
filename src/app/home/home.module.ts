@@ -16,6 +16,7 @@ import {MatSliderModule} from '@angular/material/slider';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatListModule} from '@angular/material/list';
 import {MatGridList, MatGridListModule} from '@angular/material/grid-list';
+import { DatosPersonalesComponent } from '../datos-personales/datos-personales.component';
 
 
 import { HomePageRoutingModule } from './home-routing.module';
@@ -37,10 +38,11 @@ import { HomePageRoutingModule } from './home-routing.module';
     MatSidenavModule,
     MatListModule,
     MatSliderModule,
-    MatSlideToggleModule, 
+    MatSlideToggleModule,
     MatGridListModule,
     MatRippleModule
   ],
-  declarations: [HomePage]
+  declarations: [HomePage],
+  entryComponents: [DatosPersonalesComponent]
 })
 export class HomePageModule {}

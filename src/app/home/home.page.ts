@@ -1,5 +1,12 @@
+/* eslint-disable @angular-eslint/use-lifecycle-interface */
+/* eslint-disable prefer-const */
+/* eslint-disable quote-props */
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable radix */
+/* eslint-disable max-len */
 import { Component, AfterContentInit} from '@angular/core';
-import { AlertController, NumericValueAccessor } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { AlertController, NavController, NumericValueAccessor } from '@ionic/angular';
 import { AnimationController , Animation } from '@ionic/angular';
 
 @Component({
@@ -8,15 +15,15 @@ import { AnimationController , Animation } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  categoria = ['Perro', 'Gato', 'Conejo', 'Hamster', 'Ave']
-  horas = ['9:00', '10:00', '11:00', '12:00', '13:00', '14:00']
+  categoria = ['Perro', 'Gato', 'Conejo', 'Hamster', 'Ave'];
+  horas = ['9:00', '10:00', '11:00', '12:00', '13:00', '14:00'];
   mascota = {
     'duenio': '',
     'nombre': '',
     'categoria': '',
     'fecha': '',
     'hora': '',
-  }
+  };
 
   fecha: Date;
   minDate : Date;
@@ -24,11 +31,18 @@ export class HomePage {
 
   constructor(
     private alertCtrl: AlertController, 
-    private animationCtrl:AnimationController) {
+    private animationCtrl: AnimationController,
+    private navCtrl: NavController,
+    private router: Router) {
     /* Fechas para el calendario */
     this.minDate = new Date();
     const currentYear = new Date().toLocaleDateString('en-GB');
     this.maxDate = new Date(Number.parseInt(currentYear.slice(6,10)) + 1, Number.parseInt(currentYear.slice(3,5)), Number.parseInt(currentYear.slice(0,2)));
+  }
+
+  segmentChanged($event){
+    let direccion = $event.detail.value;
+    this.router.navigate(['home/' + direccion]);
   }
   
   ngAfterContentInit() {
@@ -59,7 +73,7 @@ export class HomePage {
     return correcto;
   }
 
-  showAlert(mensaje:string) {
+  showAlert(mensaje: string) {
     
     this.alertCtrl.create({
       subHeader: mensaje,
@@ -73,6 +87,11 @@ export class HomePage {
     Object.keys(this.mascota).forEach(key =>{
       Object.defineProperty(this.mascota, key, {value: ''});
     })
+  }
+
+  async cerrarSesion() {
+    localStorage.removeItem('ingresado');
+    this.navCtrl.navigateRoot('login');
   }
 
   ngOnInit(){
