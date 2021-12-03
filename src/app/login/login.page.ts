@@ -1,6 +1,11 @@
+/* eslint-disable @typescript-eslint/quotes */
+/* eslint-disable quote-props */
+/* eslint-disable prefer-const */
+/* eslint-disable no-trailing-spaces */
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -9,34 +14,21 @@ import { AlertController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  usuario = 'vet123';
-  contraseña = 'vet123';
-
-  user={
-    nombre:'',
-    pass:'',
-  }
+  loginFormulario: FormGroup;
 
   constructor(
-    private router: Router, 
-    private alertController: AlertController) { 
-      
-    }
+    private navCtrl: NavController,
+    private alertController: AlertController,
+    public fb: FormBuilder) {
 
-  login(){
-    if (this.user.nombre !== this.usuario){
-      this.showAlert('Usuario Incorrecto');
-    }else if (this.user.pass !== this.contraseña){
-      this.showAlert('Contraseña Incorrecta');
-    }else{
-      Object.keys(this.user).forEach(key =>{
-        Object.defineProperty(this.user, key, {value: ''});
+      this.loginFormulario = this.fb.group({
+        'nombre': new FormControl("", Validators.required),
+        'password': new FormControl("", Validators.required)
       });
-      this.router.navigate(['/home']);
-    }
-  }
 
-  showAlert(mensaje:string) {
+    }
+
+  showAlert(mensaje: string) {
     
     this.alertController.create({
       header: 'Datos Inválidos',
@@ -49,7 +41,23 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
-    
+  }
+
+  async ingresar(){
+    let f = this.loginFormulario.value;
+    let usuario = JSON.parse(localStorage.getItem('usuario'));
+
+    if (usuario.nombre !== f.nombre && usuario.password !== f.password ){
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'Los datos ingresados no son correctos',
+        buttons: ['aceptar']
+      });
+      await alert.present;
+    } else {
+      localStorage.setItem('ingresado', 'true');
+      this.navCtrl.navigateRoot('home');
+    }
   }
 
 }

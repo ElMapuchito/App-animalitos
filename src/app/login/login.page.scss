@@ -1,5 +1,5 @@
 .logo {
-    margin-top: 40%;
+    margin-top: 50px;
     img{
         height: 200px;
     }
@@ -9,3 +9,22 @@
     width: 90%;
     margin: -3% 5%;
 }
+
+.final {
+    text-align: center;
+}
+
+.boEnlace {
+    background:none!important;
+    color: blue;
+    border:none; 
+    padding:0!important;
+    font: inherit;
+    cursor: pointer;
+}
+
+mat-form-field {
+    width: 90%;
+    margin: -0.6em 5%;
+}
+
