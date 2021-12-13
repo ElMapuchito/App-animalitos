@@ -1,0 +1,16 @@
+<ion-header [translucent]="true" class='ion-text-center'>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title id="titulo">Reservas realizadas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let reserva of reservas" (click)="irDetalle(reserva)">
+        <ion-label >Reserva de {{reserva.nombre}} el dia {{reserva.fecha.substring(8,10)}} del {{reserva.fecha.substring(0,4)}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

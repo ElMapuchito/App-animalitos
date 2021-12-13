@@ -56,7 +56,7 @@ export class LoginPage implements OnInit {
       await alert.present;
     } else {
       localStorage.setItem('ingresado', 'true');
-      this.navCtrl.navigateRoot('home');
+      this.navCtrl.navigateRoot('menu/home');
     }
   }
 

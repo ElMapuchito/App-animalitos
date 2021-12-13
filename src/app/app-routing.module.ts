@@ -10,11 +10,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
-    canActivate: [IngresadoGuard]
-  },
-  {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule),
     canActivate: [NoIngresadoGuard]
@@ -25,9 +20,19 @@ const routes: Routes = [
     canActivate: [NoIngresadoGuard]
   },
   {
+    path: 'menu',
+    loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule),
+    canActivate: [IngresadoGuard]
+  },
+  {
+    path: 'reserva-detalle',
+    loadChildren: () => import('./reserva-detalle/reserva-detalle.module').then( m => m.ReservaDetallePageModule)
+  },
+  {
     path: '**',
     loadChildren: () => import('./not-found/not-found.module').then( m => m.NotFoundPageModule)
   }
+  
 ];
 
 @NgModule({

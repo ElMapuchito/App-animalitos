@@ -1,33 +1,31 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { FormsModule } from '@angular/forms';
-import { HomePage } from './home.page';
-
+import { CardEntradaComponent } from './card-entrada/card-entrada.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatSelectModule} from '@angular/material/select';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatSliderModule} from '@angular/material/slider';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatListModule} from '@angular/material/list';
-import {MatGridList, MatGridListModule} from '@angular/material/grid-list';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { HttpClientModule } from '@angular/common/http';
 
-
-import { HomePageRoutingModule } from './home-routing.module';
-import { ModuloComponentsModule } from 'src/componentes/modulo-components.module';
 
 
 @NgModule({
+  declarations: [CardEntradaComponent],
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     IonicModule,
-    HomePageRoutingModule,
     MatButtonModule,
     MatButtonToggleModule,
     MatDatepickerModule,
@@ -40,9 +38,8 @@ import { ModuloComponentsModule } from 'src/componentes/modulo-components.module
     MatSliderModule,
     MatSlideToggleModule,
     MatGridListModule,
-    MatRippleModule,
-    ModuloComponentsModule
+    MatRippleModule
   ],
-  declarations: [HomePage]
+  exports: [CardEntradaComponent]
 })
-export class HomePageModule {}
+export class ModuloComponentsModule { }

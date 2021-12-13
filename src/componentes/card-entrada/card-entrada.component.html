@@ -1,0 +1,50 @@
+<ion-toolbar>
+  <ion-title id="titulo" class="ion-text-center" *ngIf="!soloLectura">Ingresar datos</ion-title>
+</ion-toolbar>
+<!-- Inicio campos del formulario -->
+  <!-- Campo Dueño -->
+  <mat-form-field appearance="outline" id="dueno" class="example-full-width">
+    <mat-label>Nombre del Dueño</mat-label>
+    <input id="letra" matInput [(ngModel)]="reserva.nombre" [disabled]="soloLectura">
+  </mat-form-field>
+  
+  <!-- Campo Mascota -->
+  <mat-form-field appearance="outline" id="mascota" class="example-full-width">
+    <mat-label>Nombre de la Mascota</mat-label>
+    <input id="letra" matInput [(ngModel)]="reserva.mascota" [disabled]="soloLectura">
+  </mat-form-field>
+  
+  <!-- Campo Categoria (Selects of home.page.ts) -->
+  <mat-form-field appearance="outline">
+    <mat-label>Categoria</mat-label>
+    <mat-select id="letra" [(ngModel)]="reserva.tipoMascota" [disabled]="soloLectura">
+      <mat-option *ngFor="let animales of categoria" [value]="animales">
+        {{animales}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <!-- Calendario -->
+  <mat-form-field appearance="outline" class="date">
+    <mat-label>Fecha de Reserva</mat-label>
+    <input id="letra" matInput [min]="minDate" [max]="maxDate" [(ngModel)]="reserva.fecha" [matDatepicker]="picker" [disabled]="soloLectura"/>
+    <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker touchUi #picker></mat-datepicker>
+  </mat-form-field>
+  
+  <!-- Campo hora de reserva (Selects of home.page.ts) -->
+  <mat-form-field appearance="outline">
+    <mat-label>Hora de reserva</mat-label>
+    <mat-select id="letra" [(ngModel)]="reserva.hora" [disabled]="soloLectura">
+      <mat-option *ngFor="let hora of horas" [value]="hora">
+        {{hora}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>  
+  <!-- Fin campos del formulario -->
+  
+  <!-- Botones -->
+  <ion-row>
+    <ion-button (click)="guardar(reserva)" *ngIf="!soloLectura">Reservar</ion-button>
+    <ion-button id="limpiar" (click)="limpiar()" *ngIf="!soloLectura">Limpiar</ion-button>
+  </ion-row>
