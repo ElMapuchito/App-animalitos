@@ -10,7 +10,7 @@
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let reserva of reservas" (click)="irDetalle(reserva)">
-        <ion-label >Reserva de {{reserva.nombre}} el dia {{reserva.fecha.substring(8,10)}} del {{reserva.fecha.substring(0,4)}}</ion-label>
+        <ion-label >Reserva de {{reserva.nombre}} el dia {{reserva.fecha.substring(8,10)}} del {{reserva.fecha.substring(5,7)}} del {{reserva.fecha.substring(0,4)}}</ion-label>
     </ion-item>
   </ion-list>
 </ion-content>

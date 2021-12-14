@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-card-entrada',
@@ -37,7 +37,9 @@ export class CardEntradaComponent implements OnInit {
     hora: string
   }>();;
 
-  constructor() {
+  constructor(
+    private toastCtrl: ToastController
+  ) {
     /* Fechas para el calendario */
     this.minDate = new Date();
     const currentYear = new Date().toLocaleDateString('en-GB');
@@ -46,8 +48,22 @@ export class CardEntradaComponent implements OnInit {
 
   ngOnInit() {}
 
-  guardar(){
-    this.eventoGuardar.emit(this.reserva);
+  async guardar(){
+    let correcto = true;
+    Object.entries(this.reserva).forEach(([key, value]) => {
+      if (value === '' && key !== 'fechaReserva') {
+        correcto = false;
+      }
+    });
+    if (correcto) {
+      this.eventoGuardar.emit(this.reserva);
+    } else {
+      const toast = await this.toastCtrl.create({
+        message: 'Debe completar todos los campos',
+        duration: 2000,
+      });
+      toast.present();
+    }
   }
 
   limpiar(){ //No se toca
